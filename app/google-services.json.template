@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:123456789:android:abcdef123456789",
         "android_client_info": {
-          "package_name": "dev.elainedb.android_claude"
+          "package_name": "dev.elainedb.ytdash_android_claude"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "123456789-dummy.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "dev.elainedb.android_claude",
+            "package_name": "dev.elainedb.ytdash_android_claude",
             "certificate_hash": "03cd1bcd2c31b27cbbcb3c0b20b5bf2d77f1f0f7"
           }
         }
