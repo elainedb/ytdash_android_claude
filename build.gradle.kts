@@ -9,7 +9,7 @@ plugins {
 
 sonar {
     properties {
-        property("sonar.projectKey", "elainedb_android_claude")
+        property("sonar.projectKey", "ytdash_android_claude")
         property("sonar.organization", "elainedb")
         property("sonar.sourceEncoding", "UTF-8")
     }
