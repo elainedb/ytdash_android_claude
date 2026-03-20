@@ -7,11 +7,7 @@ plugins {
 
 android {
     namespace = "dev.elainedb.ytdash_android_claude"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "dev.elainedb.ytdash_android_claude"
