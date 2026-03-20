@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.services)
+    id("com.google.firebase.firebase-perf")
     jacoco
 }
 
@@ -23,12 +25,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            enableUnitTestCoverage = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -38,6 +44,27 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+// Task to generate dummy google-services.json for CI builds
+tasks.register("generateDummyGoogleServices") {
+    description = "Generates a dummy google-services.json file for CI builds"
+    group = "build setup"
+
+    doLast {
+        val googleServicesFile = file("google-services.json")
+        val templateFile = file("google-services.json.template")
+
+        if (!googleServicesFile.exists() && templateFile.exists()) {
+            templateFile.copyTo(googleServicesFile)
+            println("Generated dummy google-services.json from template for CI build")
+        }
+    }
+}
+
+// Ensure dummy google-services.json is generated before build starts
+tasks.named("preBuild") {
+    dependsOn("generateDummyGoogleServices")
 }
 
 tasks.withType<Test> {
