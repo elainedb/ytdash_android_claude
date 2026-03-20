@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    jacoco
 }
 
 android {
@@ -37,6 +38,46 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+tasks.withType<Test> {
+    extensions.configure<JacocoTaskExtension> {
+        isIncludeNoLocationClasses = true
+        excludes = listOf("jdk.internal.*")
+    }
+}
+
+tasks.register<JacocoReport>("JacocoDebugCodeCoverage") {
+    dependsOn("testDebugUnitTest")
+    group = "Reporting"
+    description = "Generate JaCoCo coverage reports for debug unit tests"
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val debugTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
+        exclude(
+            "**/R.class",
+            "**/R\$*.class",
+            "**/BuildConfig.*",
+            "**/Manifest*.*",
+            "**/*Test*.*",
+            "**/ComposableSingletons*",
+            "**/*_Factory*",
+            "**/*_MembersInjector*",
+            "**/ui/theme/**"
+        )
+    }
+
+    classDirectories.setFrom(debugTree)
+    sourceDirectories.setFrom("${project.projectDir}/src/main/java")
+    executionData.setFrom(
+        fileTree(layout.buildDirectory) {
+            include("jacoco/testDebugUnitTest.exec")
+        }
+    )
 }
 
 dependencies {
