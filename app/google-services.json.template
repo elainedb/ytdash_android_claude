@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "123456789",
+    "project_id": "dummy-project-ci",
+    "storage_bucket": "dummy-project-ci.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123456789:android:abcdef123456789",
+        "android_client_info": {
+          "package_name": "dev.elainedb.android_claude"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123456789-dummy.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.elainedb.android_claude",
+            "certificate_hash": "03cd1bcd2c31b27cbbcb3c0b20b5bf2d77f1f0f7"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDummyKeyForCIBuilds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123456789-dummy.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
