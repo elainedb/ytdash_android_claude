@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew assembleDebug)",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/com/google/devtools/ksp/symbol-processing-gradle-plugin/maven-metadata.xml\")",
+      "Bash(./gradlew testDebugUnitTest)",
+      "Bash(./gradlew lint:*)",
+      "Bash(./gradlew clean:*)",
+      "Bash(curl -s \"https://dl.google.com/dl/android/maven2/androidx/room/room-compiler/maven-metadata.xml\")"
+    ]
+  }
+}
