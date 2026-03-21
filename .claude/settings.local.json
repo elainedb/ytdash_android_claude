@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find . -not -path ./.gradle/* -not -path ./.idea/* -not -path */build/* -type f ! -name .*)",
+      "Bash(./gradlew assembleDebug)",
+      "Bash(curl -s https://repo1.maven.org/maven2/com/google/devtools/ksp/com.google.devtools.ksp.gradle.plugin/maven-metadata.xml)",
+      "Bash(./gradlew testDebugUnitTest)",
+      "Bash(./gradlew assembleDebug testDebugUnitTest)",
+      "Bash(curl -s https://dl.google.com/dl/android/maven2/androidx/room/room-runtime/maven-metadata.xml)",
+      "Bash(./gradlew lint:*)"
+    ]
+  }
+}
