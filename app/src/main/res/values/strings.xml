@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">YTDash A Claude</string>
+    <string name="login_title">Login with Google</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="access_denied">Access denied. Your email is not authorized.</string>
+    <string name="sign_in_failed">Sign-in failed (code: %1$d)</string>
+    <string name="logout">Logout</string>
+    <string name="refresh">Refresh</string>
+    <string name="view_map">View Map</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
 </resources>

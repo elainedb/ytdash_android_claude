@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew :app:testDebugUnitTest :app:JacocoDebugCodeCoverage)",
+      "Bash(java -version)",
+      "Bash(echo \"JAVA_HOME=$JAVA_HOME\")",
+      "Bash(./gradlew assembleDebug)",
+      "WebSearch",
+      "WebFetch(domain:community.sonarsource.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(./gradlew sonar:*)",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/com/google/devtools/ksp/com.google.devtools.ksp.gradle.plugin/maven-metadata.xml\")",
+      "Bash(./gradlew testDebugUnitTest)",
+      "Bash(./gradlew testDebugUnitTest --info)",
+      "Bash(./gradlew clean:*)",
+      "Bash(curl -s \"https://dl.google.com/dl/android/maven2/androidx/room/room-compiler/maven-metadata.xml\")",
+      "Bash(./gradlew lint:*)",
+      "Bash(keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android)"
+    ]
+  }
+}
