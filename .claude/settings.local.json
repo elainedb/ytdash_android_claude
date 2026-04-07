@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew assembleDebug)",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/com/google/devtools/ksp/com.google.devtools.ksp.gradle.plugin/maven-metadata.xml\")",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/androidx/room/room-compiler/maven-metadata.xml\")",
+      "Bash(curl -s \"https://dl.google.com/dl/android/maven2/androidx/room/room-runtime/maven-metadata.xml\")",
+      "Bash(./gradlew assembleDebug --stacktrace)",
+      "Bash(curl -s \"https://repo1.maven.org/maven2/com/google/dagger/hilt-android/maven-metadata.xml\")",
+      "Bash(./gradlew testDebugUnitTest)",
+      "Bash(./gradlew lint:*)"
+    ]
+  }
+}
