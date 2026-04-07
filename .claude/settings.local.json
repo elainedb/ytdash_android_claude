@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree -L 5 /Users/elaine/work/aiagents-face-off/ytdash_android_claude --ignore '.gradle|.idea|build')",
+      "Bash(./gradlew assembleDebug)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(./gradlew testDebugUnitTest)"
+    ]
+  }
+}
