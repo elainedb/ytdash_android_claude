@@ -1,0 +1,34 @@
+# AC-LOGIN-03 — logout returns to the login screen.
+# logout_button may sit behind an overflow menu; we open it if present (optional tap).
+appId: ${APP_ID}
+tags: [login]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "screen_home"
+- runFlow:
+    when:
+      visible:
+        id: "overflow_menu_button"
+    commands:
+      - tapOn:
+          id: "overflow_menu_button"
+- tapOn:
+    id: "logout_button"
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 15000

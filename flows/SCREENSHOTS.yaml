@@ -1,0 +1,33 @@
+# SCREENSHOTS — capture the three main screens (login, list, map) of the FINAL app.
+# Harness-driven (run.sh step 6c), NOT part of the scored AC suite. Run from a cwd of
+# $WS/screenshots so takeScreenshot writes screenshot-{login,list,map}.png there (committed).
+appId: ${APP_ID}
+tags: [screenshots]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- takeScreenshot: screenshot-login
+- tapOn:
+    id: "login_google_button"
+- extendedWaitUntil:
+    visible:
+      id: "video_list"
+    timeout: 30000
+- takeScreenshot: screenshot-list
+- tapOn:
+    id: "map_nav_button"
+- extendedWaitUntil:
+    visible:
+      id: "screen_map"
+    timeout: 30000
+- takeScreenshot: screenshot-map

@@ -1,0 +1,30 @@
+# Interaction driver for jank profiling (NOT an AC). bench.sh runs this between gfxinfo reset
+# and capture, so frame stats reflect a consistent scroll workload across all builds.
+# Run standalone:  maestro test -e APP_ID=... (and the usual env) flows/scroll-list.yaml
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list"
+- repeat:
+    times: 8
+    commands:
+      - swipe:
+          direction: UP
+          duration: 250
+      - swipe:
+          direction: DOWN
+          duration: 250

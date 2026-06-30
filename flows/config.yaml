@@ -1,0 +1,9 @@
+# Maestro workspace config. `maestro test flows/` runs every AC-*.yaml here.
+# Subflows and the interaction driver are excluded from the AC suite by tag filtering.
+flows:
+  - "AC-*.yaml"
+
+# Run only smoke ACs with:  maestro test --include-tags smoke flows/
+# Full suite is the default (no tag filter).
+executionOrder:
+  continueOnFailure: true   # we WANT every AC attempted, so we get a full pass/fail matrix

@@ -1,0 +1,48 @@
+# REAL-CACHE — real YouTube data must be cached: an offline relaunch shows the SAME real video.
+# Captures the first real title online, then (airplane mode + fresh process, clearState:false)
+# asserts that exact title is served from cache with no error. The strongest cache check we have —
+# it proves real data persisted, not just that "some list" renders. Run AFTER the mock suite.
+appId: ${APP_ID}
+---
+# 1. ONLINE: live load, capture the first real item's text
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${API_BASE}
+      apiKey: ${API_KEY}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible: { id: "login_google_button" }
+    timeout: 20000
+- tapOn: { id: "login_google_button" }
+- extendedWaitUntil:
+    visible: { id: "video_list_item" }
+    timeout: 45000
+- copyTextFrom: { id: "video_list_item", index: 0 }
+# 2. OFFLINE relaunch — fresh process; in-memory cache is gone, persistent cache must serve
+- setAirplaneMode: enabled
+- stopApp
+- launchApp:
+    clearState: false
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${API_BASE}
+      apiKey: ${API_KEY}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible: { id: "login_google_button" }
+    timeout: 20000
+- tapOn: { id: "login_google_button" }
+- extendedWaitUntil:
+    visible: { id: "video_list_item" }
+    timeout: 20000
+- assertNotVisible: { id: "error_view" }
+# 3. the SAME real video (captured online) is present offline → correctly cached
+- assertVisible:
+    text: "${maestro.copiedText}"
+- setAirplaneMode: disabled
