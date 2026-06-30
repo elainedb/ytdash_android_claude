@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="25251FDF60029V" tests="14" failures="0" time="155.0">
+    <testcase id="AC-COUNT-01" name="AC-COUNT-01" classname="AC-COUNT-01" file="flows/AC-COUNT-01.yaml" time="6.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="list, count"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LOGIN-02" name="AC-LOGIN-02" classname="AC-LOGIN-02" file="flows/AC-LOGIN-02.yaml" time="5.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="login, smoke"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-MAP-01" name="AC-MAP-01" classname="AC-MAP-01" file="flows/AC-MAP-01.yaml" time="8.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="map, smoke"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LOGIN-03" name="AC-LOGIN-03" classname="AC-LOGIN-03" file="flows/AC-LOGIN-03.yaml" time="15.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="login"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LIST-01" name="AC-LIST-01" classname="AC-LIST-01" file="flows/AC-LIST-01.yaml" time="6.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="list, smoke"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-FILTER-01" name="AC-FILTER-01" classname="AC-FILTER-01" file="flows/AC-FILTER-01.yaml" time="19.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="filter"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-CACHE-01" name="AC-CACHE-01" classname="AC-CACHE-01" file="flows/AC-CACHE-01.yaml" time="11.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="cache"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-SORT-01" name="AC-SORT-01" classname="AC-SORT-01" file="flows/AC-SORT-01.yaml" time="18.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="sort"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LIST-02" name="AC-LIST-02" classname="AC-LIST-02" file="flows/AC-LIST-02.yaml" time="8.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="list"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-MAP-02" name="AC-MAP-02" classname="AC-MAP-02" file="flows/AC-MAP-02.yaml" time="10.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="map"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LOGIN-01" name="AC-LOGIN-01" classname="AC-LOGIN-01" file="flows/AC-LOGIN-01.yaml" time="6.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="login, smoke"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-MAP-03" name="AC-MAP-03" classname="AC-MAP-03" file="flows/AC-MAP-03.yaml" time="12.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="map, external"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LINK-01" name="AC-LINK-01" classname="AC-LINK-01" file="flows/AC-LINK-01.yaml" time="25.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="external, link"/>
+      </properties>
+    </testcase>
+    <testcase id="AC-LIST-03" name="AC-LIST-03" classname="AC-LIST-03" file="flows/AC-LIST-03.yaml" time="6.0" status="SUCCESS">
+      <properties>
+        <property name="tags" value="list, external"/>
+      </properties>
+    </testcase>
+  </testsuite>
+</testsuites>

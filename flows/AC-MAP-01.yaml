@@ -1,0 +1,31 @@
+# AC-MAP-01 — navigate to the map; markers are present.
+# See flows/README.md "Known cross-framework caveat: map markers" — if a build can't expose
+# individual overlay/canvas markers to a11y, this is a real finding; record it in the manifest.
+appId: ${APP_ID}
+tags: [map, smoke]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list"
+- tapOn:
+    id: "map_nav_button"
+- extendedWaitUntil:
+    visible:
+      id: "screen_map"
+    timeout: 30000
+# Fixture has 5 located videos → at least one marker must be reachable.
+- assertVisible:
+    id: "map_marker"

@@ -1,0 +1,30 @@
+# AC-LIST-02 — refresh re-fetches; list stays populated, no blocking error.
+appId: ${APP_ID}
+tags: [list]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- tapOn:
+    id: "refresh_control"
+# refresh_control is a pull-to-refresh in some builds; if the id isn't tappable as a button,
+# replace the tapOn above with:  - swipe: { direction: DOWN, from: { id: "video_list" } }
+- extendedWaitUntil:
+    visible:
+      id: "video_list_item"
+    timeout: 20000
+- assertNotVisible:
+    id: "error_view"

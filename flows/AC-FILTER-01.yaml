@@ -1,0 +1,42 @@
+# AC-FILTER-01 — filtering to the FIRST source channel's category keeps that bucket, drops others.
+# The displayed category = the configured channel label (the mock maps channel[0]→the fixture's
+# first bucket, which holds "Tech Talk One"; "ZZZ Newest Clip" is in a different bucket). FILTER_LABEL
+# is the first configured channel's label (run.sh passes it from config.yaml). Fixture titles are
+# stable ("Tech Talk One" in bucket 0, "ZZZ Newest Clip" elsewhere) regardless of the label name.
+appId: ${APP_ID}
+tags: [filter]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- tapOn:
+    id: "filter_button"
+- tapOn:
+    text: "(?i)${FILTER_LABEL}"
+# Some builds apply instantly; tap apply only if present.
+- runFlow:
+    when:
+      visible:
+        id: "filter_apply_button"
+    commands:
+      - tapOn:
+          id: "filter_apply_button"
+- extendedWaitUntil:
+    visible:
+      text: ".*Tech Talk One.*"
+    timeout: 15000
+- assertNotVisible:
+    text: ".*ZZZ Newest Clip.*"
