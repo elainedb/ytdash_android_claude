@@ -1,0 +1,49 @@
+# AC-CACHE-01 — after one online load, an offline relaunch still shows cached items.
+# Requires Maestro >= 1.39 for setAirplaneMode. Emulators must have airplane-mode support.
+appId: ${APP_ID}
+tags: [cache]
+---
+# 1. First load while online — populate the local store.
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+# 2. Go offline and relaunch. clearState MUST be false here — clearing state would wipe the
+#    local DB and there'd be nothing to serve from cache. (mock auth still works offline.)
+- setAirplaneMode: enabled
+- stopApp
+- launchApp:
+    clearState: false
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+# 3. Cached content is shown; no blocking error.
+- extendedWaitUntil:
+    visible:
+      id: "video_list_item"
+    timeout: 20000
+- assertNotVisible:
+    id: "error_view"
+# 4. Always restore connectivity.
+- setAirplaneMode: disabled

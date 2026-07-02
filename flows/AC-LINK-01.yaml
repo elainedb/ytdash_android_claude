@@ -1,0 +1,67 @@
+# AC-LINK-01 — the REAL external launch works (captureExternalLinks=false), from BOTH the list and
+# the map bottom sheet. A broken real-launch (e.g. React Native's Linking.openURL throwing, or a
+# bad deep-link call) surfaces `external_open_error`; this asserts it never does. This is the path
+# the deterministic ACs (capture mode) deliberately skip, so it's where the RN "tap → error, no
+# redirect" bug shows up. (Needs an emulator that can handle an https URL — i.e. a browser present.)
+appId: ${APP_ID}
+tags: [external, link]
+---
+# 1) Real launch from a LIST cell
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: false
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- tapOn:
+    id: "video_list_item"
+    index: 0
+- waitForAnimationToEnd:
+    timeout: 4000
+- assertNotVisible:
+    id: "external_open_error"
+
+# 2) Real launch from the MAP bottom sheet (fresh relaunch; phase 1 left us logged in / a chooser up)
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: false
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- tapOn:
+    id: "map_nav_button"
+- extendedWaitUntil:
+    visible:
+      id: "map_marker"
+    timeout: 30000
+- tapOn:
+    id: "map_marker"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: "detail_open_youtube_button"
+    timeout: 15000
+- tapOn:
+    id: "detail_open_youtube_button"
+- waitForAnimationToEnd:
+    timeout: 4000
+- assertNotVisible:
+    id: "external_open_error"
