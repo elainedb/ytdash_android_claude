@@ -1,0 +1,43 @@
+# AC-SORT-01 — sort by date descending puts the known newest item first.
+# Fixture facts: "ZZZ Newest Clip" has the latest publishedAt, "AAA Oldest Clip" the earliest.
+# We assert the newest is the topmost video_list_item after a descending date sort.
+appId: ${APP_ID}
+tags: [sort]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- tapOn:
+    id: "sort_button"
+- tapOn:
+    text: "(?i)date.*(desc|newest)"
+- runFlow:
+    when:
+      visible:
+        id: "sort_apply_button"
+    commands:
+      - tapOn:
+          id: "sort_apply_button"
+# Topmost row should be the newest clip. assertVisible with index 0 = first item in the list.
+- extendedWaitUntil:
+    visible:
+      id: "video_list_item"
+      index: 0
+    timeout: 15000
+- assertVisible:
+    id: "video_list_item"
+    index: 0
+    text: ".*ZZZ Newest Clip.*"

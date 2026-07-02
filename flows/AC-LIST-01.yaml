@@ -1,0 +1,27 @@
+# AC-LIST-01 — list populates from the API; the known newest title is present.
+appId: ${APP_ID}
+tags: [list, smoke]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- extendedWaitUntil:
+    visible:
+      id: "video_list"
+    timeout: 30000
+- assertVisible:
+    id: "video_list_item"
+# Deterministic fixture fact: this title exists (spec.md §Data).
+- assertVisible:
+    text: ".*ZZZ Newest Clip.*"

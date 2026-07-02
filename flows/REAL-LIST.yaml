@@ -1,0 +1,25 @@
+# REAL-LIST — the app fetches LIVE YouTube data and renders the list.
+# Real data path: apiBaseUrl + apiKey point at the real API (constitution §4); auth stays mocked
+# (real Google OAuth can't be driven by Maestro). Fixture-AGNOSTIC: real data changes, so this only
+# asserts the list populates and there's no blocking error. The deterministic functional score is
+# the 12 mock ACs; this proves the real edge works. Run AFTER the mock suite passes.
+appId: ${APP_ID}
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${API_BASE}
+      apiKey: ${API_KEY}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible: { id: "login_google_button" }
+    timeout: 20000
+- tapOn: { id: "login_google_button" }
+- extendedWaitUntil:
+    visible: { id: "video_list_item" }
+    timeout: 45000
+- assertVisible: { id: "video_list_item" }
+- assertNotVisible: { id: "error_view" }
