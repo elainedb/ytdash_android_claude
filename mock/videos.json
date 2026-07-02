@@ -1,0 +1,13 @@
+{
+  "_comment": "Deterministic fixture for automated validation. Matches spec.md §Data exactly: 8 videos, 5 with location, exactly 3 category=tech, known newest 'ZZZ Newest Clip' and oldest 'AAA Oldest Clip'. Default order is VIDEO_ID_1..8 so AC-LIST-03 (tap index 0) hits VIDEO_ID_1. Keep this file identical across ALL builds.",
+  "items": [
+    { "id": "VIDEO_ID_1", "title": "Tech Talk One",   "description": "A talk about tech.",   "category": "tech",  "publishedAt": "2026-03-01T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": { "lat": 48.8566, "lng": 2.3522 } },
+    { "id": "VIDEO_ID_2", "title": "Tech Talk Two",   "description": "More tech talk.",      "category": "tech",  "publishedAt": "2026-02-01T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": { "lat": 51.5074, "lng": -0.1278 } },
+    { "id": "VIDEO_ID_3", "title": "Tech Deep Dive",  "description": "Deep technical dive.",  "category": "tech",  "publishedAt": "2026-01-15T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": { "lat": 52.5200, "lng": 13.4050 } },
+    { "id": "VIDEO_ID_4", "title": "Music Session",   "description": "Live music session.",   "category": "music", "publishedAt": "2026-04-01T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": { "lat": 40.4168, "lng": -3.7038 } },
+    { "id": "VIDEO_ID_5", "title": "News Roundup",    "description": "Weekly news roundup.",  "category": "news",  "publishedAt": "2026-05-01T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": { "lat": 41.9028, "lng": 12.4964 } },
+    { "id": "VIDEO_ID_6", "title": "Music Live",      "description": "A live music set.",      "category": "music", "publishedAt": "2026-04-15T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": null },
+    { "id": "VIDEO_ID_7", "title": "AAA Oldest Clip", "description": "The oldest clip.",       "category": "news",  "publishedAt": "2025-12-01T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": null },
+    { "id": "VIDEO_ID_8", "title": "ZZZ Newest Clip", "description": "The newest clip.",       "category": "music", "publishedAt": "2026-06-20T10:00:00Z", "thumbnailUrl": "{BASE}/thumb", "location": null }
+  ]
+}

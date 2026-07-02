@@ -1,0 +1,30 @@
+# AC-LIST-03 — tapping a row opens the external YouTube link (captured deterministically).
+appId: ${APP_ID}
+tags: [list, external]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- tapOn:
+    id: "video_list_item"
+    index: 0
+# captureExternalLinks=true → app surfaces the target URL instead of launching YouTube.
+- extendedWaitUntil:
+    visible:
+      id: "external_open_url"
+    timeout: 15000
+- assertVisible:
+    text: ".*youtube.com/watch\\?v=VIDEO_ID_1.*"

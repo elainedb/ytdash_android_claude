@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="25251FDF60029V" tests="2" failures="2" time="51.0">
+    <testcase id="AC-LIST-03" name="AC-LIST-03" classname="AC-LIST-03" file="flows/AC-LIST-03.yaml" time="24.0" status="ERROR">
+      <properties>
+        <property name="tags" value="list, external"/>
+      </properties>
+      <failure>Assertion is false: id: external_open_url is visible</failure>
+    </testcase>
+    <testcase id="AC-MAP-03" name="AC-MAP-03" classname="AC-MAP-03" file="flows/AC-MAP-03.yaml" time="27.0" status="ERROR">
+      <properties>
+        <property name="tags" value="map, external"/>
+      </properties>
+      <failure>Assertion is false: id: external_open_url is visible</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

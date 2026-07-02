@@ -1,0 +1,29 @@
+# --- secrets / agent state (never publish) ---
+config/secrets.env
+.claude/
+
+# --- Flutter / Dart ---
+/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+
+# --- Android / Gradle ---
+**/build/
+.gradle/
+android/local.properties
+*.keystore
+*.jks
+app/src/main/assets/channels.json
+
+# --- React Native / Expo / Node ---
+node_modules/
+.expo/
+ios/Pods/
+ios/build/
+
+# --- editors ---
+*.iml
+.idea/
