@@ -1,0 +1,46 @@
+# AC-MAP-03 — the opened URL CORRESPONDS to the tapped marker: capture the sheet's `detail_video_url`,
+# open, and assert `external_open_url` equals it. Build-agnostic — works no matter which marker is
+# index 0 (real widget marker, native chip, etc.).
+appId: ${APP_ID}
+tags: [map, external]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- tapOn:
+    id: "map_nav_button"
+- extendedWaitUntil:
+    visible:
+      id: "map_marker"
+    timeout: 30000
+- tapOn:
+    id: "map_marker"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: "detail_open_youtube_button"
+    timeout: 15000
+# capture THIS marker's video URL from the sheet, before opening
+- copyTextFrom:
+    id: "detail_video_url"
+- tapOn:
+    id: "detail_open_youtube_button"
+- extendedWaitUntil:
+    visible:
+      id: "external_open_url"
+    timeout: 15000
+# the opened URL must equal the sheet's URL → it really opened the corresponding video
+- assertVisible:
+    id: "external_open_url"
+    text: "${maestro.copiedText}"

@@ -1,0 +1,28 @@
+# AC-COUNT-01 — the title's `video_count` shows the TOTAL number of loaded videos.
+# The mock serves each channel's videos across multiple pages, so the full count (VIDEO_COUNT, = 8
+# for the fixture) appears ONLY if the build followed pagination and fetched every page of every
+# channel. A build that loads just page 1 will show fewer and fail here.
+appId: ${APP_ID}
+tags: [list, count]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- assertVisible:
+    id: "video_list_item"
+- extendedWaitUntil:
+    visible:
+      id: "video_count"
+      text: ".*${VIDEO_COUNT}.*"
+    timeout: 15000

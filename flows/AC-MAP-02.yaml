@@ -1,0 +1,33 @@
+# AC-MAP-02 — tapping a marker opens a detail bottom sheet with the YouTube action.
+appId: ${APP_ID}
+tags: [map]
+---
+- launchApp:
+    clearState: true
+    arguments:
+      uiTestMode: true
+      mockAuthEmail: ${AUTHORIZED_EMAIL}
+      apiBaseUrl: ${MOCK_API_BASE}
+      authorizedEmails: ${AUTHORIZED_EMAIL}
+      captureExternalLinks: true
+- extendedWaitUntil:
+    visible:
+      id: "login_google_button"
+    timeout: 20000
+- tapOn:
+    id: "login_google_button"
+- tapOn:
+    id: "map_nav_button"
+- extendedWaitUntil:
+    visible:
+      id: "map_marker"
+    timeout: 30000
+- tapOn:
+    id: "map_marker"
+    index: 0
+- extendedWaitUntil:
+    visible:
+      id: "detail_bottom_sheet"
+    timeout: 15000
+- assertVisible:
+    id: "detail_open_youtube_button"
